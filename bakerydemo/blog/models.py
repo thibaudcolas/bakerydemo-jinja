@@ -176,7 +176,6 @@ class BlogIndexPage(RoutablePageMixin, Page):
     @route(r"^tags/$", name="tag_archive")
     @route(r"^tags/([\w-]+)/$", name="tag_archive")
     def tag_archive(self, request, tag=None):
-
         try:
             tag = Tag.objects.get(slug=tag)
         except Tag.DoesNotExist:
@@ -186,7 +185,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             return redirect(self.url)
 
         posts = self.get_posts(tag=tag)
-        context = {"self": self, "tag": tag, "posts": posts}
+        context = {"self": self, "page": self, "tag": tag, "posts": posts}
         return render(request, "blog/blog_index_page.html", context)
 
     def serve_preview(self, request, mode_name):
