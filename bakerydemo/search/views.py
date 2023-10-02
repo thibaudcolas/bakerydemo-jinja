@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.urls import reverse
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from wagtail.contrib.search_promotions.models import Query
